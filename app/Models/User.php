@@ -26,7 +26,12 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'username',
+        'phone_number',
+        'roles',
+        'password',
     ];
 
     /**
@@ -58,4 +63,8 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function transactions() {
+        return $this->hasMany(Transaction::class, 'users_id', 'id');
+    }
 }
